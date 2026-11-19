@@ -14,7 +14,8 @@ jobs:
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: |
-          if curl -fsS -m 25 --retry 2 https://status.livesforever.club -o /dev/null; then
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+          if curl -fsS -m 25 --retry 2 -A "$UA" -H "Accept: text/html,application/xhtml+xml" https://status.livesforever.club -o /dev/null; then
             echo "dkserver reachable"
             exit 0
           fi
